@@ -43,16 +43,7 @@ export DB_HOST=localhost
 export DB_PORT=5432
 ```
 
-## macOS / Homebrew
-
-If `psql` isn’t on your PATH:
-
-```bash
-brew install libpq
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-```
-
-_(Intel Macs may use `/usr/local/opt/libpq/bin`.)_ Add the PATH line to `~/.zshrc` to keep it.
+##
 
 ## Quick start
 
