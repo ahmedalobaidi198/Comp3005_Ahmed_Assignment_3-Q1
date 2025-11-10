@@ -3,121 +3,100 @@
 **Name:** Ahmed Al-Obaidi
 **Student ID:** 101259592
 
----
+## Overview
 
-## 📘 Overview
-
-This repository contains a simple Python application demonstrating CRUD (Create, Read, Update, Delete) operations on a PostgreSQL database.
+Python app that connects to PostgreSQL and runs CRUD (Create, Read, Update, Delete) on a `students` table.
 
 ### Files
 
-- **`db/setup.sql`** — SQL script to create the `students` table and insert initial data.
-- **`main.py`** — Python script implementing the CRUD functions using `psycopg2`.
-
----
+- `db/setup.sql` – creates the table and seeds initial rows
+- `main.py` – CRUD functions using `psycopg2`
 
 ## Prerequisites
 
-- Python **3.8+**
-- PostgreSQL server (local or remote)
-- `psycopg2-binary` Python package
+- Python 3.8+
+- PostgreSQL
+- `psycopg2-binary`
 
----
+## Setup
 
-## Setup Instructions
+1. Create a database (e.g., `assignment3`) and a user with access.
+2. Run the SQL setup:
 
-1. **Create a PostgreSQL database** (e.g., `assignment3`) and user with proper privileges.
-2. **Run the SQL setup script:**
+```bash
+psql -U your_postgres_username -d your_database_name -f db/setup.sql
+```
 
-   ```bash
-   psql -U your_postgres_username -d your_database_name -f db/setup.sql
-   ```
+3. Install dependency:
 
-3. **Install dependencies:**
+```bash
+python3 -m pip install psycopg2-binary
+```
 
-   ```bash
-   python3 -m pip install psycopg2-binary
-   ```
+4. Set environment variables:
 
-4. **Set environment variables (recommended):**
+```bash
+export DB_NAME=your_database_name
+export DB_USER=your_postgres_username
+export DB_PASSWORD=your_postgres_password
+export DB_HOST=localhost
+export DB_PORT=5432
+```
 
-   ```bash
-   export DB_NAME=your_database_name
-   export DB_USER=your_postgres_username
-   export DB_PASSWORD=your_postgres_password
-   export DB_HOST=localhost
-   export DB_PORT=5432
-   ```
+## macOS / Homebrew
 
----
-
-## 💻 macOS / Homebrew Note
-
-If `psql` is not available in your PATH, install it using Homebrew:
+If `psql` isn’t on your PATH:
 
 ```bash
 brew install libpq
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 ```
 
-_(For Intel Macs, the path may be `/usr/local/opt/libpq/bin`.)_
-To make the PATH permanent, add this line to your `~/.zshrc`.
+_(Intel Macs may use `/usr/local/opt/libpq/bin`.)_ Add the PATH line to `~/.zshrc` to keep it.
 
----
-
-## 🚀 Quick Start Example
-
-Replace placeholders with your own values before running these commands.
+## Quick start
 
 ```bash
-# Run the SQL setup
+# create table + seed data
 psql -U your_postgres_username -d your_database_name -f db/setup.sql
 
-# Install dependency
+# install dependency
 python3 -m pip install psycopg2-binary
 
-# Set environment variables
+# env vars
 export DB_NAME=your_database_name
 export DB_USER=your_postgres_username
 export DB_PASSWORD='your_postgres_password'
 export DB_HOST=localhost
 export DB_PORT=5432
 
-# Run the application
+# run the app
 python3 main.py
 
-# Verify results
-psql -U your_postgres_username -d your_database_name -c "SELECT * FROM students ORDER BY student_id;"
+# verify
+psql -U your_postgres_username -d your_database_name -c \
+"SELECT * FROM students ORDER BY student_id;"
 ```
 
----
-
-## ▶️ Running the Application
-
-Execute the demo script:
+## Running the app
 
 ```bash
 python3 main.py
 ```
 
-The program will:
+It will:
 
-1. Display all students (Read)
-2. Attempt to insert a duplicate student (Create – with error handling)
-3. Update an existing student’s email (Update)
-4. Delete one student record (Delete)
-5. Display the final table
-
----
+1. list all students
+2. try to insert a duplicate (shows friendly error)
+3. update one email
+4. delete one row
+5. list the final table
 
 ## Notes
 
-- The script reads database settings from **environment variables** for security.
-- If variables are not set, it defaults to placeholder values — update them before running.
-- For your demonstration video, show table contents **before and after** the operations (using `psql` or pgAdmin).
+- The app reads DB settings from environment variables. If they aren’t set, replace placeholders before running.
+- For the demo video, show the table before/after in `psql` or pgAdmin.
 
----
+## Video
 
-## 🎥 Video Demo
-
-**Link:** https://mediaspace.carleton.ca/media/Assignment3_Q1/1_a5p3zb4b
+https://mediaspace.carleton.ca/media/Assignment3_Q1/1_a5p3zb4b
